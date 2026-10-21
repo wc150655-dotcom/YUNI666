@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>潮汐心事 HeartTides ｜ 塔罗占卜 · 灵气疗愈 · 占星骰子 · 仪式代做</title>
+<meta name="description" content="潮汐心事 HeartTides —— 小汐（kiki）的占卜与疗愈工作室，赫卡忒的追随者。塔罗占卜、灵气疗愈、占星骰子与仪式代做：在十字路口点一盏灯，把心事看完，再自己走出去。">
+<meta name="theme-color" content="#F9F8F6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+SC:wght@300;400&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Editorial 风格 token
+   纸：#F9F8F6   墨：紫墨 #2E1B47
+   层次：/70 /50 /40 /10   单色体系，无第二色相
+   ============================================================ */
+:root{
+  --paper:#F9F8F6;
+  --ink:#2E1B47;
+  --ink-70:rgba(46,27,71,.70);   /* 次要正文  5.7:1 */
+  --ink-50:rgba(46,27,71,.65);   /* 辅助文字  4.8:1  AA */
+  --ink-40:rgba(46,27,71,.65);   /* 标签/注脚 4.8:1  AA */
+  --ink-20:rgba(46,27,71,.20);   /* 装饰细线（非文本） */
+  --ink-10:rgba(46,27,71,.11);   /* 分隔线/边框 */
+  --ink-05:rgba(46,27,71,.045);  /* 淡底 */
+
+  --serif:"Cormorant Garamond","Noto Serif SC","Songti SC",Georgia,serif;
+  --sans:"Noto Sans SC",system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+
+  --pad-x:24px;
+  --nav-h:76px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --dur:500ms;
+}
+@media (min-width:768px){:root{--pad-x:48px}}
+
+*,*::before,*::after{box-sizing:border-box}
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:calc(var(--nav-h) + 24px);
+  -webkit-text-size-adjust:100%;
+}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:16px;
+  line-height:1.85;
+  letter-spacing:.01em;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+::selection{background:var(--ink);color:var(--paper)}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{
+  position:absolute;left:16px;top:-72px;z-index:100;
+  padding:12px 20px;background:var(--ink);color:var(--paper);
+  font-size:12px;letter-spacing:.18em;transition:top .3s var(--ease);
+}
+.skip:focus{top:16px}
+
+/* ============ 版心与节奏 ============ */
+.wrap{width:100%;max-width:1280px;margin:0 auto;padding:0 var(--pad-x)}
+.sec{padding:clamp(96px,11vw,160px) 0}
+
+/* ============ 通用排版 ============ */
+.label{
+  font-family:var(--sans);font-size:11px;font-weight:400;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--ink-40);
+}
+
+/* 移动下划线：从右向左展开 */
+.u{position:relative;display:inline-block}
+.u::after{
+  content:'';position:absolute;left:0;right:0;bottom:-2px;height:1px;
+  background:currentColor;transform:scaleX(0);transform-origin:right;
+  transition:transform var(--dur) var(--ease);
+}
+.u:hover::after,.u:focus-visible::after{transform:scaleX(1);transform-origin:left}
+
+/* 按钮 */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 30px;font-family:var(--sans);font-size:13px;
+  letter-spacing:.16em;line-height:1;
+  background:var(--ink);color:var(--paper);border:1px solid var(--ink);
+  transition:opacity var(--dur) var(--ease),background-color var(--dur) var(--ease),color var(--dur) var(--ease);
+}
+.btn:hover{opacity:.88}
+.btn:active{transform:scale(.97)}
+.btn .arr{transition:transform var(--dur) var(--ease)}
+.btn:hover .arr{transform:translateX(6px)}
+
+/* ============ 导航 ============ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(249,248,246,.9);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border-bottom:1px solid transparent;
+  transition:border-color var(--dur) var(--ease);
+}
+.nav.scrolled{border-bottom-color:var(--ink-10)}
+.nav-in{
+  max-width:1280px;margin:0 auto;padding:0 var(--pad-x);height:var(--nav-h);
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.logo{display:flex;align-items:center;gap:12px;min-width:0}
+.logo-mark{width:14px;height:14px;flex:none;color:var(--ink)}
+.logo-txt{display:flex;flex-direction:column;line-height:1.1;min-width:0}
+.logo-cn{
+  font-family:var(--serif);font-size:18px;font-weight:400;
+  letter-spacing:.26em;white-space:nowrap;
+}
+/* HeartTides：斜体衬线作为艺术字标 */
+.logo-en{
+  font-family:var(--serif);font-style:italic;font-size:15px;
+  letter-spacing:.16em;color:var(--ink-50);
+  white-space:nowrap;margin-top:1px;
+}
+.nav-links{display:none;align-items:center;gap:38px}
+.nav-links a{
+  font-size:11.5px;letter-spacing:.22em;color:var(--ink-70);
+  transition:color var(--dur) var(--ease);
+}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-right{display:none;align-items:center;gap:32px}
+.nav-cta{font-size:11.5px;letter-spacing:.22em;color:var(--ink)}
+.burger{
+  display:flex;flex-direction:column;justify-content:center;gap:6px;
+  width:44px;height:44px;margin-right:-12px;
+}
+.burger span{display:block;width:24px;height:1px;background:var(--ink);transition:transform var(--dur) var(--ease),opacity .3s}
+body.menu-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+body.menu-open .burger span:nth-child(2){opacity:0}
+body.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media (min-width:900px){
+  .nav-links,.nav-right{display:flex}
+  .burger{display:none}
+}
+
+/* 移动端菜单 */
+.drawer{
+  position:fixed;inset:0;z-index:49;background:var(--paper);
+  padding:calc(var(--nav-h) + 40px) var(--pad-x) 48px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  opacity:0;visibility:hidden;transform:translateY(-8px);
+  transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease),visibility var(--dur);
+}
+body.menu-open .drawer{opacity:1;visibility:visible;transform:none}
+.drawer nav{display:flex;flex-direction:column;border-top:1px solid var(--ink-10)}
+.drawer-link{
+  display:flex;align-items:baseline;gap:20px;
+  padding:22px 0;border-bottom:1px solid var(--ink-10);
+  font-family:var(--serif);font-size:28px;font-weight:400;letter-spacing:.06em;
+  transition:color var(--dur) var(--ease),padding-left var(--dur) var(--ease);
+}
+.drawer-link:hover{color:var(--ink-70);padding-left:8px}
+.drawer-link i{font-style:normal;font-family:var(--sans);font-size:10px;letter-spacing:.2em;color:var(--ink-40)}
+.drawer-foot{font-size:12px;line-height:2.1;color:var(--ink-70)}
+.drawer-foot .label{display:block;margin-bottom:10px}
+@media (min-width:900px){.drawer{display:none}}
+
+/* ============================================================
+   首屏
+   ============================================================ */
+.hero{padding:calc(var(--nav-h) + clamp(48px,8vw,104px)) 0 0}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:clamp(40px,6vw,64px);align-items:end}
+@media (min-width:980px){
+  .hero-grid{grid-template-columns:minmax(0,1.32fr) minmax(0,.68fr);gap:0}
+}
+.hero h1{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(2.55rem,7vw,6.2rem);
+  line-height:1.02;letter-spacing:-.015em;
+  margin:0 0 clamp(24px,3vw,36px);
+}
+.hero h1 span{display:block}
+.hero h1 .ln-3{color:var(--ink-70)}
+.hero-lede{
+  max-width:30em;margin:0 0 40px;
+  font-size:14.5px;line-height:2;color:var(--ink-70);
+}
+.hero-lede b{font-weight:400;color:var(--ink)}
+.hero-lede em{font-family:var(--serif);font-style:italic;font-size:1.1em;color:var(--ink)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:28px;align-items:center}
+.hero-fig{margin:0}
+.hero-fig .moon{width:100%;max-width:360px;margin:0 auto;color:var(--ink)}
+.cap{
+  display:flex;gap:14px;align-items:baseline;
+  margin-top:18px;padding-top:12px;border-top:1px solid var(--ink-10);
+  font-size:11px;line-height:1.7;color:var(--ink-50);letter-spacing:.04em;
+}
+.cap-no{
+  font-family:var(--sans);font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-40);white-space:nowrap;
+}
+.cap em{font-family:var(--serif);font-style:italic;color:var(--ink-40)}
+
+/* 服务索引 */
+.hero-index{
+  margin-top:clamp(48px,7vw,88px);
+  border-top:1px solid var(--ink-10);
+  display:grid;grid-template-columns:repeat(2,1fr);
+}
+.hero-index > div{
+  display:flex;gap:14px;align-items:baseline;
+  padding:20px 0;border-bottom:1px solid var(--ink-10);
+}
+.hero-index .idx-no{font-family:var(--serif);font-size:12px;color:var(--ink-40)}
+.hero-index .idx-tx{font-size:13px;letter-spacing:.1em}
+@media (min-width:820px){
+  .hero-index{grid-template-columns:repeat(4,1fr)}
+  .hero-index > div{
+    border-bottom:0;border-left:1px solid var(--ink-10);
+    padding:22px 24px;
+  }
+  .hero-index > div:first-child{border-left:0;padding-left:0}
+}
+
+/* 跑马灯 */
+.ticker{
+  margin-top:clamp(40px,6vw,72px);
+  border-top:1px solid var(--ink-10);border-bottom:1px solid var(--ink-10);
+  overflow:hidden;padding:13px 0;
+}
+.ticker-track{display:flex;width:max-content;animation:mar 46s linear infinite}
+.ticker-track span{
+  padding:0 20px;font-size:10.5px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--ink-40);white-space:nowrap;
+}
+@keyframes mar{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============================================================
+   区块标题（标题 + 右对齐编号）
+   ============================================================ */
+.sec-head{border-top:1px solid var(--ink-10);padding-top:clamp(20px,3vw,32px);margin-bottom:clamp(40px,6vw,72px)}
+.sec-head-row{display:grid;grid-template-columns:1fr;gap:16px}
+@media (min-width:768px){
+  .sec-head-row{grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end}
+}
+.sec-head h2{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(1.9rem,4.2vw,3.4rem);
+  line-height:1.12;letter-spacing:-.01em;margin:0;
+}
+.sec-head .sub{
+  margin:14px 0 0;font-family:var(--serif);font-style:italic;
+  font-size:15px;color:var(--ink-50);letter-spacing:.02em;
+}
+.sec-folio{display:flex;align-items:baseline;gap:16px}
+@media (min-width:768px){.sec-folio{justify-content:flex-end;padding-bottom:6px}}
+.folio-no{font-family:var(--serif);font-weight:300;font-size:15px;letter-spacing:.1em;color:var(--ink-40)}
+.folio-line{width:28px;height:1px;background:var(--ink-20);align-self:center}
+.folio-tag{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-40)}
+
+/* ============================================================
+   关于
+   ============================================================ */
+.about-grid{display:grid;grid-template-columns:1fr;gap:clamp(36px,5vw,72px)}
+@media (min-width:900px){
+  .about-grid{grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(48px,6vw,96px)}
+  .about-fig{position:sticky;top:calc(var(--nav-h) + 40px);align-self:start}
+}
+.about-fig{margin:0}
+@media (max-width:899px){
+  /* 用 justify-self 居中；用 auto 外边距会取消网格拉伸，导致肖像被收缩 */
+  .about-fig{max-width:320px;width:100%;justify-self:center;margin:0}
+}
+.portrait{
+  position:relative;aspect-ratio:4/5;width:100%;
+  border:1px solid var(--ink-10);
+  background:var(--ink-05);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  overflow:hidden;
+}
+.portrait .moon-sm{width:44px;height:44px;color:var(--ink-40)}
+.portrait .ph{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-40)}
+.about-body p{margin:0 0 20px;font-size:15px;line-height:2;color:var(--ink-70);max-width:32em}
+.about-body p strong{font-weight:400;color:var(--ink)}
+/* 首字母放大（中文下沉首字易压行，改用抬升式大写首字） */
+.about-body p.dc::first-letter{
+  font-family:var(--serif);font-size:1.9em;font-weight:400;
+  color:var(--ink);line-height:1;padding-right:2px;
+}
+.about-name{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:.04em;margin:0 0 6px;
+}
+.about-name-en{
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:.6em;letter-spacing:.1em;color:var(--ink-40);margin-left:4px;
+}
+.about-alias{
+  margin:0 0 28px;font-family:var(--serif);font-style:italic;
+  font-size:14px;color:var(--ink-50);
+}
+/* 随笔：以引文形式单独成型 */
+.about-quote{
+  margin:32px 0;padding:24px 0;
+  border-top:1px solid var(--ink-10);border-bottom:1px solid var(--ink-10);
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(16px,2vw,19px);line-height:2;color:var(--ink);
+}
+/* 赫卡忒的一段：斜体衬线，与正文区分 */
+.about-aside{
+  margin:30px 0 0;padding-top:22px;
+  border-top:1px solid var(--ink-10);
+  font-family:var(--serif);font-style:italic;
+  font-size:15px;line-height:2.05;color:var(--ink-70);
+}
+.creed{list-style:none;margin:36px 0 0;padding:0}
+.creed li{
+  display:grid;grid-template-columns:auto 1fr;gap:18px;
+  padding:18px 0;border-top:1px solid var(--ink-10);
+  font-size:14px;line-height:1.9;color:var(--ink-70);
+  transition:border-color var(--dur) var(--ease),color var(--dur) var(--ease);
+}
+.creed li:hover{border-top-color:var(--ink-40);color:var(--ink)}
+.creed li:last-child{border-bottom:1px solid var(--ink-10)}
+.creed .c-no{font-family:var(--serif);font-size:12px;color:var(--ink-40);letter-spacing:.08em;padding-top:3px}
+
+/* ============================================================
+   业务
+   ============================================================ */
+.svc-grid{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--ink-10)}
+@media (min-width:640px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:1100px){.svc-grid{grid-template-columns:repeat(4,1fr)}}
+.svc{
+  padding:clamp(26px,3vw,36px);
+  border-bottom:1px solid var(--ink-10);
+  display:flex;flex-direction:column;
+  transition:background-color var(--dur) var(--ease);
+}
+@media (min-width:640px){.svc:nth-child(odd){border-right:1px solid var(--ink-10)}}
+@media (min-width:1100px){
+  .svc:not(:last-child){border-right:1px solid var(--ink-10)}
+  .svc:nth-child(odd){border-right:1px solid var(--ink-10)}
+  .svc:last-child{border-right:0}
+}
+.svc:hover{background:var(--ink-05)}
+.svc-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:clamp(24px,4vw,44px)}
+.svc-no{font-family:var(--serif);font-size:12px;color:var(--ink-40);letter-spacing:.08em}
+.svc-en{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-40)}
+.svc h3{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(1.25rem,2vw,1.6rem);letter-spacing:.02em;
+  margin:0 0 12px;transition:font-style var(--dur) var(--ease);
+}
+.svc:hover h3{font-style:italic}
+.svc-desc{margin:0 0 20px;font-size:13.5px;line-height:1.95;color:var(--ink-70)}
+.svc-list{list-style:none;margin:0 0 24px;padding:0}
+.svc-list li{
+  position:relative;padding-left:14px;margin-bottom:8px;
+  font-size:12.5px;line-height:1.8;color:var(--ink-50);
+}
+.svc-list li::before{content:'';position:absolute;left:0;top:.82em;width:5px;height:1px;background:var(--ink-40)}
+.svc-meta{
+  margin-top:auto;padding-top:16px;border-top:1px solid var(--ink-10);
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  font-size:11px;letter-spacing:.1em;color:var(--ink-40);
+}
+.svc-meta b{font-weight:400;color:var(--ink)}
+
+/* ============================================================
+   灵气疗愈专区
+   ============================================================ */
+.reiki-grid{display:grid;grid-template-columns:1fr;gap:clamp(40px,6vw,88px)}
+@media (min-width:900px){
+  .reiki-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(48px,6vw,80px)}
+}
+.sub-label{
+  display:block;font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ink-40);margin:0 0 14px;
+}
+.reiki-lead{margin:0 0 30px;font-size:15px;line-height:2;color:var(--ink-70);max-width:32em}
+.reiki-lead strong{font-weight:400;color:var(--ink)}
+.fit{
+  margin:0;font-family:var(--serif);font-style:italic;font-size:clamp(15px,1.6vw,17px);
+  line-height:2;color:var(--ink);
+}
+/* 分隔点附着在前一个词之后，且每个词整体不拆行 */
+.fit span{white-space:nowrap}
+.fit span:not(:last-child)::after{content:'·';color:var(--ink-40);margin:0 9px}
+
+/* 价目 */
+.plans-wrap{border-top:1px solid var(--ink-10);padding-top:26px}
+.plan{padding:0 0 20px;border-bottom:1px solid var(--ink-10);margin-bottom:20px}
+.plan:last-of-type{margin-bottom:0;padding-bottom:0;border-bottom:0}
+.plan-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
+.plan-head h3{
+  font-family:var(--serif);font-weight:400;font-size:17px;letter-spacing:.02em;
+  margin:0;transition:font-style var(--dur) var(--ease);
+}
+.plan:hover .plan-head h3{font-style:italic}
+.plan-en{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-40);white-space:nowrap}
+.plan-price{
+  font-family:var(--serif);font-size:27px;line-height:1;color:var(--ink);
+  font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:"lnum" 1,"tnum" 1;
+}
+.plan-price .cur{
+  font-family:var(--sans);font-weight:300;font-size:.55em;
+  color:var(--ink-70);margin-right:3px;letter-spacing:0;
+}
+.plan-price .unit{font-family:var(--sans);font-size:10px;letter-spacing:.1em;color:var(--ink-40);margin-left:5px}
+.plan-week{display:block;margin-top:9px;font-size:12px;letter-spacing:.04em;color:var(--ink-50)}
+.plans-note{margin:22px 0 0;font-size:11.5px;line-height:2;color:var(--ink-50)}
+.plans-sub{
+  margin:12px 0 0;font-family:var(--serif);font-style:italic;
+  font-size:12.5px;line-height:1.8;color:var(--ink-40);
+}
+
+/* 点单流程 */
+.steps{
+  list-style:none;margin:clamp(44px,6vw,80px) 0 0;padding:0;
+  display:grid;grid-template-columns:1fr;gap:0;
+  border-top:1px solid var(--ink-10);
+}
+@media (min-width:640px){.steps{grid-template-columns:1fr 1fr}}
+@media (min-width:1100px){.steps{grid-template-columns:repeat(4,1fr)}}
+.steps li{
+  padding:22px clamp(8px,2vw,22px) 26px 0;
+  border-bottom:1px solid var(--ink-10);
+}
+@media (min-width:640px){.steps li{border-right:1px solid var(--ink-10);padding-right:clamp(16px,2vw,24px)}}
+@media (min-width:640px){.steps li:nth-child(2n){border-right:0}}
+@media (min-width:1100px){.steps li:nth-child(2n){border-right:1px solid var(--ink-10)}}
+.steps li:last-child{border-right:0}
+.step-no{
+  display:block;font-family:var(--serif);font-size:12px;letter-spacing:.1em;
+  color:var(--ink-40);margin-bottom:16px;
+}
+.steps h3{
+  font-family:var(--serif);font-weight:400;font-size:15.5px;
+  letter-spacing:.03em;margin:0 0 10px;
+}
+.steps p{margin:0;font-size:12.5px;line-height:1.95;color:var(--ink-50)}
+
+/* 默念句 */
+.mantra{
+  margin:0;padding:clamp(36px,5vw,64px) 0;
+  border-bottom:1px solid var(--ink-10);
+  text-align:center;
+}
+.mantra .sub-label{margin-bottom:24px}
+.mantra p{
+  margin:0 auto;max-width:26em;
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(17px,2.5vw,25px);line-height:1.9;color:var(--ink);
+}
+.reiki-note{
+  margin:0;padding:22px 0 0;
+  font-size:12px;line-height:2.05;color:var(--ink-50);
+}
+.reiki-note b{color:var(--ink);font-weight:400}
+
+/* ============================================================
+   价格表
+   ============================================================ */
+.plist{border-top:1px solid var(--ink-10)}
+.pgroup{padding:clamp(28px,4vw,44px) 0 0}
+.pg-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:14px}
+.pg-head h3{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(1.15rem,1.8vw,1.4rem);letter-spacing:.03em;margin:0;
+  display:flex;align-items:baseline;gap:12px;
+}
+.pg-head h3 svg{width:13px;height:13px;flex:none;color:var(--ink-40);transform:translateY(-1px)}
+.pg-en{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-40);white-space:nowrap}
+.prow{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;
+  gap:6px 24px;align-items:baseline;
+  padding:16px 12px 16px 0;
+  border-top:1px solid var(--ink-10);
+  transition:background-color var(--dur) var(--ease),border-color var(--dur) var(--ease);
+}
+.prow:hover{background:var(--ink-05);border-top-color:var(--ink-40)}
+.p-name{font-size:14.5px;letter-spacing:.03em;color:var(--ink);grid-column:1}
+.p-note{display:inline-block;margin-left:8px;font-size:10px;letter-spacing:.14em;color:var(--ink-40);vertical-align:1px}
+.p-desc{grid-column:1;grid-row:2;font-size:12.5px;line-height:1.8;color:var(--ink-50)}
+.p-amt{
+  grid-column:2;grid-row:1;justify-self:end;
+  font-family:var(--serif);font-size:21px;font-weight:400;letter-spacing:.01em;
+  color:var(--ink);white-space:nowrap;
+  font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:"lnum" 1,"tnum" 1;
+}
+/* 货币符号用无衬线体，避免衬线体的 ¥ 被渲染成 Y 形 */
+.p-amt .cur{
+  font-family:var(--sans);font-weight:300;font-size:.62em;
+  margin-right:3px;color:var(--ink-70);letter-spacing:0;
+}
+.p-amt .unit{font-family:var(--sans);font-size:10px;letter-spacing:.1em;color:var(--ink-40);margin-left:5px}
+@media (min-width:768px){
+  .prow{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) auto;padding:17px 16px 17px 0}
+  .p-name{grid-column:1;grid-row:1}
+  .p-desc{grid-column:2;grid-row:1;margin:0}
+  .p-amt{grid-column:3;grid-row:1}
+}
+/* 推荐行：整行淡底 + 加粗名称，不用游离短线 */
+.prow.feat{background:var(--ink-05)}
+.prow.feat .p-name{font-weight:400}
+.pfoot{
+  margin:clamp(32px,5vw,48px) 0 0;padding-top:20px;border-top:1px solid var(--ink-10);
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 32px;
+  font-size:11.5px;line-height:1.9;color:var(--ink-50);
+}
+.pfoot p{margin:0}
+
+/* ============================================================
+   客返
+   ============================================================ */
+.reviews{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--ink-10)}
+@media (min-width:768px){.reviews{grid-template-columns:1fr 1fr}}
+@media (min-width:1100px){.reviews{grid-template-columns:repeat(3,1fr)}}
+.review{
+  display:block;width:100%;text-align:left;
+  padding:clamp(24px,3vw,32px) clamp(20px,2.4vw,28px) clamp(26px,3vw,34px) 0;
+  border-bottom:1px solid var(--ink-10);
+  transition:border-color var(--dur) var(--ease);
+}
+.review:hover{border-bottom-color:var(--ink-40)}
+.rv-top{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.rv-moon{width:11px;height:11px;color:var(--ink-40);flex:none;transition:color var(--dur) var(--ease)}
+.review:hover .rv-moon{color:var(--ink)}
+.rv-name{font-size:12.5px;letter-spacing:.08em;color:var(--ink)}
+.rv-date{margin-left:auto;font-family:var(--serif);font-size:11.5px;letter-spacing:.06em;color:var(--ink-40)}
+.review blockquote{
+  margin:0 0 16px;
+  font-family:var(--serif);font-size:16.5px;line-height:1.95;letter-spacing:.01em;
+  color:var(--ink-70);
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
+  transition:color var(--dur) var(--ease);
+}
+.review:hover blockquote{color:var(--ink)}
+.rv-foot{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.rv-svc{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-40)}
+.rv-more{
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-40);
+  display:inline-flex;align-items:center;gap:6px;
+  opacity:0;transition:opacity var(--dur) var(--ease);
+}
+.review:hover .rv-more,.review:focus-visible .rv-more{opacity:1}
+.rv-more .arr{transition:transform var(--dur) var(--ease)}
+.review:hover .rv-more .arr{transform:translateX(4px)}
+@media (hover:none){.rv-more{opacity:1}}
+
+/* ============================================================
+   留言
+   ============================================================ */
+.guest-grid{display:grid;grid-template-columns:1fr;gap:clamp(48px,6vw,88px)}
+@media (min-width:900px){.guest-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(48px,6vw,96px)}}
+
+.field{position:relative;border-bottom:1px solid var(--ink-50);margin-bottom:26px;transition:border-color var(--dur) var(--ease)}
+.field:focus-within{border-bottom-color:var(--ink)}
+.field input,.field textarea{
+  width:100%;padding:24px 0 10px;border:0;background:none;
+  font-family:var(--serif);font-size:19px;line-height:1.4;color:var(--ink);
+  outline:none;appearance:none;-webkit-appearance:none;border-radius:0;
+}
+.field textarea{resize:vertical;min-height:96px;line-height:1.7}
+.field label{
+  position:absolute;left:0;top:22px;
+  font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-40);pointer-events:none;
+  transition:top var(--dur) var(--ease),font-size var(--dur) var(--ease),color var(--dur) var(--ease);
+}
+.field input:focus + label,
+.field textarea:focus + label,
+.field input:not(:placeholder-shown) + label,
+.field textarea:not(:placeholder-shown) + label{
+  top:0;font-size:9.5px;color:var(--ink-70);
+}
+.field input::placeholder,.field textarea::placeholder{color:transparent}
+
+.field-select{border-bottom:1px solid var(--ink-50);margin-bottom:26px;padding-bottom:12px;transition:border-color var(--dur) var(--ease)}
+.field-select:focus-within{border-bottom-color:var(--ink)}
+.field-select .flabel{display:block;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-70);margin-bottom:4px}
+.field-select select{
+  width:100%;border:0;background:none;padding:8px 0 0;
+  font-family:var(--serif);font-size:19px;color:var(--ink);
+  outline:none;appearance:none;-webkit-appearance:none;border-radius:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='6' viewBox='0 0 11 6'%3E%3Cpath d='M1 1l4.5 4L10 1' fill='none' stroke='%232E1B47' stroke-width='1'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 2px center;
+}
+.field-select select option{background:var(--paper);color:var(--ink)}
+
+.check{display:flex;align-items:flex-start;gap:12px;cursor:pointer;margin:0 0 28px;font-size:12px;line-height:1.8;color:var(--ink-50)}
+.check input{width:14px;height:14px;flex:none;margin:4px 0 0;accent-color:#2E1B47;cursor:pointer}
+.form-hint{margin:18px 0 0;font-size:11px;line-height:1.9;color:var(--ink-40);letter-spacing:.02em}
+
+.guest-list{border-top:1px solid var(--ink-10)}
+.list-title{
+  display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+  margin:0 0 4px;padding-bottom:12px;border-bottom:1px solid var(--ink-10);
+}
+.msg{padding:22px 0;border-bottom:1px solid var(--ink-10);animation:fade .5s var(--ease) both}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.msg-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.msg-name{font-size:12.5px;letter-spacing:.06em;color:var(--ink)}
+.msg-svc{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-40)}
+.msg-date{margin-left:auto;font-family:var(--serif);font-size:11.5px;color:var(--ink-40)}
+.msg p{margin:0;font-size:13.5px;line-height:1.95;color:var(--ink-70)}
+.msg.private p{font-style:italic;color:var(--ink-40)}
+.msg-reply{
+  margin-top:14px;padding:14px 16px;background:var(--ink-05);
+  border-left:1px solid var(--ink-20);
+  font-size:12.5px;line-height:1.9;color:var(--ink-70);
+}
+.msg-reply b{
+  display:block;font-weight:400;font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-40);margin-bottom:6px;
+}
+
+/* ============================================================
+   预约
+   ============================================================ */
+.contact{border-top:1px solid var(--ink-10);padding:clamp(96px,9vw,144px) 0}
+.contact-grid{display:grid;grid-template-columns:1fr;gap:clamp(32px,5vw,64px);align-items:end}
+@media (min-width:900px){.contact-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+.contact h2{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(2.1rem,5.4vw,4.4rem);line-height:1.04;
+  letter-spacing:-.015em;margin:0 0 22px;
+}
+.contact h2 em{font-style:italic;color:var(--ink-50)}
+.contact p{margin:0 0 32px;max-width:26em;font-size:14px;line-height:2;color:var(--ink-70)}
+.contact-meta{display:grid;gap:0;border-top:1px solid var(--ink-10);margin:0}
+.contact-meta div{
+  display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+  padding:14px 0;border-bottom:1px solid var(--ink-10);
+}
+.contact-meta dt{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-40)}
+.contact-meta dd{margin:0;font-family:var(--serif);font-size:15px;color:var(--ink)}
+
+/* ============================================================
+   页脚（反白）
+   ============================================================ */
+.footer{background:var(--ink);color:var(--paper)}
+.footer-in{max-width:1280px;margin:0 auto;padding:clamp(56px,8vw,104px) var(--pad-x) 40px}
+.footer-top{display:grid;grid-template-columns:1fr;gap:clamp(32px,5vw,56px)}
+@media (min-width:768px){.footer-top{grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,4fr)}}
+.f-brand{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.f-brand svg{width:14px;height:14px;color:var(--paper)}
+.f-brand b{font-family:var(--serif);font-weight:400;font-size:19px;letter-spacing:.24em}
+.f-brand-en{font-family:var(--serif);font-style:italic;font-size:13px;letter-spacing:.12em;color:rgba(249,248,246,.55)}
+.f-desc{margin:0;font-size:12.5px;line-height:2;color:rgba(249,248,246,.62);max-width:26em}
+.f-label{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(249,248,246,.58);margin:0 0 14px}
+.f-links{list-style:none;margin:0;padding:0}
+.f-links li{margin-bottom:10px;font-size:12.5px;color:rgba(249,248,246,.72)}
+.f-links a{transition:color var(--dur) var(--ease)}
+.f-links a:hover{color:var(--paper)}
+.f-links .u::after{background:var(--paper)}
+.disclaimer{
+  margin:clamp(40px,6vw,64px) 0 0;padding-top:24px;
+  border-top:1px solid rgba(249,248,246,.14);
+  font-size:11px;line-height:2;color:rgba(249,248,246,.55);
+}
+.disclaimer b{color:rgba(249,248,246,.72);font-weight:400}
+.copyright{
+  margin:22px 0 0;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(249,248,246,.58);
+}
+
+/* ============================================================
+   弹窗 / 提示
+   ============================================================ */
+.lightbox{
+  position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;
+  padding:24px;background:rgba(46,27,71,.94);
+  opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility .4s;
+}
+.lightbox.open{opacity:1;visibility:visible}
+.lb-card{
+  position:relative;width:100%;max-width:600px;max-height:84vh;overflow:auto;
+  background:var(--paper);color:var(--ink);border:1px solid var(--ink-10);
+  padding:clamp(32px,5vw,56px);
+  transform:translateY(10px);transition:transform .45s var(--ease);
+}
+.lightbox.open .lb-card{transform:none}
+.lb-close{
+  position:absolute;top:16px;right:16px;width:36px;height:36px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--ink-10);color:var(--ink-50);
+  transition:color var(--dur) var(--ease),border-color var(--dur) var(--ease);
+}
+.lb-close:hover{color:var(--ink);border-color:var(--ink-20)}
+.lb-close svg{width:12px;height:12px}
+.lb-quote{
+  margin:0 0 28px;font-family:var(--serif);font-weight:400;
+  font-size:clamp(17px,2.2vw,20px);line-height:1.9;color:var(--ink);
+}
+.lb-meta{
+  display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;
+  padding-top:18px;border-top:1px solid var(--ink-10);
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-40);
+}
+.lb-meta .who{font-size:12px;letter-spacing:.06em;text-transform:none;color:var(--ink)}
+
+.toast{
+  position:fixed;left:50%;bottom:32px;transform:translate(-50%,16px);
+  z-index:90;padding:14px 26px;
+  background:var(--ink);color:var(--paper);
+  font-size:12px;letter-spacing:.1em;text-align:center;
+  max-width:calc(100vw - 40px);
+  opacity:0;visibility:hidden;
+  transition:opacity .4s var(--ease),transform .4s var(--ease),visibility .4s;
+}
+.toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+/* ============================================================
+   动效与可访问性
+   ============================================================ */
+[data-reveal]{opacity:0;transform:translateY(10px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+[data-reveal].in{opacity:1;transform:none}
+
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,
+.review:focus-visible{
+  outline:1px solid var(--ink);outline-offset:4px;
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  [data-reveal]{opacity:1 !important;transform:none !important}
+  .ticker-track{animation:none !important}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">跳到主要内容</a>
+
+<!-- ===================== 导航 ===================== -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="logo" href="#top" aria-label="潮汐心事 HeartTides · 回到顶部">
+      <svg class="logo-mark" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true">
+        <path d="M7.6 1A5 5 0 0 0 7.6 11A9.4 9.4 0 0 1 7.6 1Z"/>
+      </svg>
+      <span class="logo-txt">
+        <span class="logo-cn">潮汐心事</span>
+        <span class="logo-en">HeartTides</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="主导航">
+      <a href="#about">关于</a>
+      <a href="#services">业务</a>
+      <a href="#reiki">灵气</a>
+      <a href="#pricing">价格</a>
+      <a href="#reviews">客返</a>
+      <a href="#guestbook">留言</a>
+    </nav>
+
+    <div class="nav-right">
+      <a class="nav-cta u" href="#contact">预约解读</a>
+    </div>
+
+    <button class="burger" id="burger" aria-label="打开菜单" aria-expanded="false" aria-controls="drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- 移动端菜单 -->
+<div class="drawer" id="drawer" aria-hidden="true">
+  <nav aria-label="移动端导航">
+    <a class="drawer-link" href="#about"><i>01</i>关于我</a>
+    <a class="drawer-link" href="#services"><i>02</i>个人业务</a>
+    <a class="drawer-link" href="#reiki"><i>03</i>灵气疗愈</a>
+    <a class="drawer-link" href="#pricing"><i>04</i>价格表</a>
+    <a class="drawer-link" href="#reviews"><i>05</i>客返专区</a>
+    <a class="drawer-link" href="#guestbook"><i>06</i>留言区</a>
+    <a class="drawer-link" href="#contact"><i>07</i>预约方式</a>
+  </nav>
+  <div class="drawer-foot">
+    <span class="label">Contact</span>
+    微信 · moonkey_heka<br>
+    服务时间 · 每日 20:00 – 24:00<br>
+    <span style="font-family:var(--serif);font-style:italic">Hekate, lead the way.</span>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ===================== 首屏 ===================== -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+
+      <div class="hero-main" data-reveal>
+        <h1>
+          <span class="ln-1">在十字路口，</span>
+          <span class="ln-2">让月光替你</span>
+          <span class="ln-3">照亮下一步</span>
+        </h1>
+        <p class="hero-lede">
+          我是<b>小汐</b>，潮汐心事的主理人，赫卡忒的追随者，塔罗、占星骰子与灵气疗愈的实践者。
+          我不替你决定命运，只把牌与星里藏着的线索摊开，让你看清自己真正想走的那条路。
+          <br><em>Hekate holds the keys — she never opens the door for you.</em>
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="#pricing">查看服务与价格 <span class="arr">→</span></a>
+          <a class="u" href="#about" style="font-size:12px;letter-spacing:.18em">认识我</a>
+        </div>
+      </div>
+
+      <figure class="hero-fig" data-reveal>
+        <!-- 三相月 · 蚀刻版画式插图 -->
+        <svg class="moon" viewBox="0 0 360 300" role="img" aria-label="三相月插图：左侧新月、中央带蚀刻纹理的满月、右侧残月">
+          <defs>
+            <clipPath id="discClip"><circle cx="180" cy="150" r="86"/></clipPath>
+            <clipPath id="cresL"><path d="M48 110A40 40 0 0 0 48 190A86 86 0 0 1 48 110Z"/></clipPath>
+            <clipPath id="cresR"><path d="M312 110A40 40 0 0 1 312 190A86 86 0 0 0 312 110Z"/></clipPath>
+            <!-- 新月共用同一组刻线，保证三个月的蚀刻密度一致 -->
+            <path id="hatch" d="M8 110h344M8 114h344M8 118h344M8 122h344M8 126h344M8 130h344M8 134h344M8 138h344M8 142h344M8 146h344M8 150h344M8 154h344M8 158h344M8 162h344M8 166h344M8 170h344M8 174h344M8 178h344M8 182h344M8 186h344M8 190h344"/>
+          </defs>
+
+          <!-- 外圈：实线 + 点线，构成版画的边框 -->
+          <circle cx="180" cy="150" r="124" fill="none" stroke="currentColor" stroke-width=".7" opacity=".3"/>
+          <circle cx="180" cy="150" r="108" fill="none" stroke="currentColor" stroke-width=".7" opacity=".16" stroke-dasharray="1 6"/>
+
+          <!-- 中央满月：淡底 + 横向蚀刻线 + 环形山 -->
+          <circle cx="180" cy="150" r="86" fill="currentColor" opacity=".06"/>
+          <g clip-path="url(#discClip)">
+            <path d="M92 66h176M92 73h176M92 80h176M92 87h176M92 94h176M92 101h176M92 108h176M92 115h176M92 122h176M92 129h176M92 136h176M92 143h176M92 150h176M92 157h176M92 164h176M92 171h176M92 178h176M92 185h176M92 192h176M92 199h176M92 206h176M92 213h176M92 220h176M92 227h176M92 234h176"
+                  stroke="currentColor" stroke-width=".6" opacity=".4"/>
+            <g fill="none" stroke="currentColor" stroke-width=".8" opacity=".45">
+              <circle cx="150" cy="118" r="16"/>
+              <circle cx="207" cy="176" r="9"/>
+              <circle cx="166" cy="196" r="6"/>
+              <circle cx="198" cy="110" r="3.5"/>
+              <circle cx="214" cy="128" r="2.5"/>
+            </g>
+          </g>
+          <circle cx="180" cy="150" r="86" fill="none" stroke="currentColor" stroke-width="1.1"/>
+
+          <!-- 左新月 / 右残月：与满月同一套蚀刻线，仅留细轮廓 -->
+          <g clip-path="url(#cresL)"><use href="#hatch" stroke="currentColor" stroke-width="1.1" opacity=".92"/></g>
+          <g clip-path="url(#cresR)"><use href="#hatch" stroke="currentColor" stroke-width="1.1" opacity=".92"/></g>
+          <path d="M48 110A40 40 0 0 0 48 190A86 86 0 0 1 48 110Z" fill="none" stroke="currentColor" stroke-width="1"/>
+          <path d="M312 110A40 40 0 0 1 312 190A86 86 0 0 0 312 110Z" fill="none" stroke="currentColor" stroke-width="1"/>
+
+          <!-- 横轴 -->
+          <path d="M8 150h26M326 150h26" stroke="currentColor" stroke-width=".7" opacity=".3"/>
+        </svg>
+        <figcaption class="cap">
+          <span class="cap-no">Fig. 01</span>
+          <span>三相月 · 赫卡忒的标志<br><em>Waxing — Full — Waning</em></span>
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <div class="hero-index">
+      <div><span class="idx-no">01</span><span class="idx-tx">塔罗占卜</span></div>
+      <div><span class="idx-no">02</span><span class="idx-tx">灵气疗愈</span></div>
+      <div><span class="idx-no">03</span><span class="idx-tx">占星骰子</span></div>
+      <div><span class="idx-no">04</span><span class="idx-tx">仪式代做</span></div>
+    </div>
+  </div>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>塔罗占卜</span><span>·</span><span>灵气疗愈</span><span>·</span><span>占星骰子</span><span>·</span><span>仪式代做</span><span>·</span><span>赫卡忒</span><span>·</span><span>十字路口</span><span>·</span><span>钥匙与火炬</span><span>·</span><span>月相</span><span>·</span>
+      <span>塔罗占卜</span><span>·</span><span>灵气疗愈</span><span>·</span><span>占星骰子</span><span>·</span><span>仪式代做</span><span>·</span><span>赫卡忒</span><span>·</span><span>十字路口</span><span>·</span><span>钥匙与火炬</span><span>·</span><span>月相</span><span>·</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 关于 ===================== -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div class="sec-head-row">
+        <div>
+          <h2>关于我</h2>
+          <p class="sub">小汐 kiki · HeartTides · a devotee of Hekate</p>
+        </div>
+        <div class="sec-folio">
+          <span class="folio-no">01</span>
+          <span class="folio-line"></span>
+          <span class="folio-tag">About</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <figure class="about-fig" data-reveal>
+        <div class="portrait">
+          <!-- 替换为你的照片：<img src="portrait.jpg" alt="小汐" style="width:100%;height:100%;object-fit:cover"> -->
+          <svg class="moon-sm" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true">
+            <path d="M7.6 1A5 5 0 0 0 7.6 11A9.4 9.4 0 0 1 7.6 1Z"/>
+          </svg>
+          <span class="ph">Portrait</span>
+        </div>
+        <figcaption class="cap">
+          <span class="cap-no">Fig. 02</span>
+          <span>小汐 kiki · 潮汐心事<br><em>HeartTides</em></span>
+        </figcaption>
+      </figure>
+
+      <div class="about-body" data-reveal>
+        <h3 class="about-name">小汐 <span class="about-name-en">kiki</span></h3>
+        <p class="about-alias">主营占卜 · 灵气疗愈 · 潮汐心事主理人</p>
+
+        <p class="dc">
+          我叫小汐，也可以叫我 kiki，叫法随意，人比较随和。
+        </p>
+        <p>
+          我认为人只能无限接近本质，而不能真正看清和感受本质的全貌。
+          所以基于这样的理念，我珍惜并正视每一段我所参与体验的关系 / 思考。
+          朋友圈仅作为储存这些宝贵时刻的功能罐，请不要通过我所展示记录的某一阶段的我而妄加揣测。
+        </p>
+
+        <blockquote class="about-quote">
+          随笔是眼泪和汗水随时间蒸发，作为我往后人生的调味盐而存在。
+        </blockquote>
+
+        <p>
+          同时我也不喜欢用「本质」这样的字眼去过多表达，不想拦腰截断他人的思考，
+          也不想他人过多地依赖我个人的见解。喜欢并欢迎友好而互相尊重的交流形式。
+        </p>
+
+        <p class="about-aside">
+          赫卡忒举着两支火炬站在三岔路口，她把钥匙递出去，却从不替谁开门。
+          这也是我理解占卜的方式——我能做的只是把门照亮，走出去的仍然是你。
+        </p>
+
+        <ul class="creed">
+          <li><span class="c-no">i</span><span>不预言命定。我只把牌面摊开，判断权始终在你手里。</span></li>
+          <li><span class="c-no">ii</span><span>不替你下结论。你的思考不该被谁拦腰截断。</span></li>
+          <li><span class="c-no">iii</span><span>所有对话严格保密。你说出口的事，只留在我们之间。</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 业务 ===================== -->
+<section class="sec" id="services" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div class="sec-head-row">
+        <div>
+          <h2>个人业务</h2>
+          <p class="sub">Four roads from one crossroads</p>
+        </div>
+        <div class="sec-folio">
+          <span class="folio-no">02</span>
+          <span class="folio-line"></span>
+          <span class="folio-tag">Services</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-grid">
+      <article class="svc" data-reveal>
+        <div class="svc-top"><span class="svc-no">01</span><span class="svc-en">Tarot</span></div>
+        <h3>塔罗占卜</h3>
+        <p class="svc-desc">78 张牌映照当下的能量分布与可能走向，把模糊的心事拆成能看的一格一格。</p>
+        <ul class="svc-list">
+          <li>关系卡住，想看清双方位置</li>
+          <li>选择困难，需要第三视角</li>
+          <li>情绪反复，想找到它的来处</li>
+        </ul>
+        <p class="svc-meta"><span>文字 / 语音</span><span><b>¥33</b> 起</span></p>
+      </article>
+
+      <article class="svc" data-reveal>
+        <div class="svc-top"><span class="svc-no">02</span><span class="svc-en">Reiki</span></div>
+        <h3>灵气疗愈</h3>
+        <p class="svc-desc">臼井灵气，远程传递。不触碰、不介入，只是把一股温和的能量借给你。</p>
+        <ul class="svc-list">
+          <li>长期疲惫、失眠、身体沉重</li>
+          <li>情绪淤积，说不清哪里不舒服</li>
+          <li>重大节点前后想稳住自己</li>
+        </ul>
+        <p class="svc-meta"><span>远程 · 30 分钟</span><span><b>¥20</b> 起 · <a class="u" href="#reiki">详情</a></span></p>
+      </article>
+
+      <article class="svc" data-reveal>
+        <div class="svc-top"><span class="svc-no">03</span><span class="svc-en">Dice</span></div>
+        <h3>占星骰子</h3>
+        <p class="svc-desc">三颗骰子，一个问题。快、准、不绕弯，适合那些不需要长篇大论的小疑问。</p>
+        <ul class="svc-list">
+          <li>是 / 否型的直接提问</li>
+          <li>短期走向：这周、这个月</li>
+          <li>临时的决策与试探</li>
+        </ul>
+        <p class="svc-meta"><span>文字解答</span><span><b>¥18</b> / 问</span></p>
+      </article>
+
+      <article class="svc" data-reveal>
+        <div class="svc-top"><span class="svc-no">04</span><span class="svc-en">Ritual</span></div>
+        <h3>仪式代做</h3>
+        <p class="svc-desc">依你的意图准备材料与流程，在合适的时间代为完成，并把过程记录回传给你。</p>
+        <ul class="svc-list">
+          <li>新月 / 满月的许愿与释放</li>
+          <li>告别、断舍离、切断旧连结</li>
+          <li>为某人祈福、为某事先铺路</li>
+        </ul>
+        <p class="svc-meta"><span>提前 3 天预约</span><span>价格 <b>面议</b></span></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 灵气疗愈专区 ===================== -->
+<section class="sec" id="reiki" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div class="sec-head-row">
+        <div>
+          <h2>灵气疗愈</h2>
+          <p class="sub">Reiki — a gentle practice, hands off</p>
+        </div>
+        <div class="sec-folio">
+          <span class="folio-no">03</span>
+          <span class="folio-line"></span>
+          <span class="folio-tag">Reiki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reiki-grid">
+      <div data-reveal>
+        <p class="reiki-lead">
+          <strong>灵气（Reiki）疗愈</strong>是一种温和无害的能量疗愈，通过手部能量、符号能量传递舒缓身心，
+          <strong>无需身体接触</strong>。整个过程你只需要安静地躺着或坐着，其余交给我。
+        </p>
+
+        <span class="sub-label">适用人群</span>
+        <p class="fit">
+          <span>易焦虑</span><span>想寻求温和的方式</span><span>近期状态不佳</span><span>失眠</span><span>助推进程</span>
+        </p>
+      </div>
+
+      <div data-reveal>
+        <div class="plans-wrap">
+          <div class="plan">
+            <div class="plan-head">
+              <h3>吉祥天女 / 解厄度母</h3>
+              <span class="plan-en">Tara</span>
+            </div>
+            <div class="plan-price"><span class="cur">¥</span>20<span class="unit">/ 次</span></div>
+            <span class="plan-week">包周 ¥100 · 5 天</span>
+          </div>
+
+          <div class="plan">
+            <div class="plan-head">
+              <h3>古埃及灵气</h3>
+              <span class="plan-en">Egyptian</span>
+            </div>
+            <div class="plan-price"><span class="cur">¥</span>30<span class="unit">/ 次</span></div>
+            <span class="plan-week">包周 ¥140 · 5 天</span>
+          </div>
+        </div>
+
+        <p class="plans-note">
+          以上定价均含 30 分钟疗愈。单次加时：吉祥天女 / 解厄度母 <b>每 10 分钟 +¥10</b>，
+          古埃及灵气 <b>每 10 分钟 +¥20</b>，以此类推。一天只接 5 位。
+        </p>
+        <p class="plans-sub">以上灵气均已受专业导师点化，非自点小白。</p>
+      </div>
+    </div>
+
+    <ol class="steps" data-reveal>
+      <li>
+        <span class="step-no">01</span>
+        <h3>先付后疗愈</h3>
+        <p>下单即排期，下单不退。时间宝贵，请谨慎考虑后再约。</p>
+      </li>
+      <li>
+        <span class="step-no">02</span>
+        <h3>选择连接方式</h3>
+        <p>开始前可选实时视讯 / 电话 / 照片，三选一。照片需为近两个月内、本人出镜，可部位照、带特效或不露脸。</p>
+      </li>
+      <li>
+        <span class="step-no">03</span>
+        <h3>了解你的状态</h3>
+        <p>开始前我会掷占星骰子或抽一张塔罗，了解你的近期状态，以便制定更适用于你的符号方案。</p>
+      </li>
+      <li>
+        <span class="step-no">04</span>
+        <h3>默念开场</h3>
+        <p>开始前，请在心里默念下方这句话，把意图交出去。</p>
+      </li>
+    </ol>
+
+    <div class="mantra" data-reveal>
+      <span class="sub-label">默念 · Mantra</span>
+      <p>“我接受灵气疗愈我的身心，我允许更多的美好幸福在我的生命当中流动。”</p>
+    </div>
+
+    <p class="reiki-note" data-reveal>
+      <b>注意：</b>如你本身就有健康问题，建议及时就医。玄学手段只是辅助，想要更快的改变，离不开自身的行动。
+    </p>
+  </div>
+</section>
+
+<!-- ===================== 价格 ===================== -->
+<section class="sec" id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div class="sec-head-row">
+        <div>
+          <h2>价格表</h2>
+          <p class="sub">Fair coin, honest reading — 明码标价，不临时加价</p>
+        </div>
+        <div class="sec-folio">
+          <span class="folio-no">04</span>
+          <span class="folio-line"></span>
+          <span class="folio-tag">Pricing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="plist">
+
+      <div class="pgroup" data-reveal>
+        <div class="pg-head">
+          <h3>
+            <svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><circle cx="6" cy="6" r="5" opacity=".35"/><circle cx="6" cy="6" r="2"/></svg>
+            占星骰子
+          </h3>
+          <span class="pg-en">Quick Ask</span>
+        </div>
+        <div class="prow">
+          <div class="p-name">占星骰子 · 单问</div>
+          <div class="p-desc">三颗骰子，聚焦一个问题，给出短期走向与能量提示。</div>
+          <div class="p-amt"><span class="cur">¥</span>18<span class="unit">/ 问</span></div>
+        </div>
+      </div>
+
+      <div class="pgroup" data-reveal>
+        <div class="pg-head">
+          <h3>
+            <svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="1" y="2" width="7" height="8" opacity=".35"/><rect x="4" y="1" width="7" height="8"/></svg>
+            塔罗牌阵
+          </h3>
+          <span class="pg-en">Tarot</span>
+        </div>
+        <div class="prow feat">
+          <div class="p-name">塔罗单问<span class="p-note">无牌阵三张 · 新手推荐</span></div>
+          <div class="p-desc">理清一件事的来龙去脉与当下最快的出口。</div>
+          <div class="p-amt"><span class="cur">¥</span>33<span class="unit">/ 问</span></div>
+        </div>
+        <div class="prow">
+          <div class="p-name">四季牌阵</div>
+          <div class="p-desc">一季一次的能量总览，适合生日、换季与年度复盘。</div>
+          <div class="p-amt"><span class="cur">¥</span>100<span class="unit">/ 次</span></div>
+        </div>
+      </div>
+
+      <div class="pgroup" data-reveal>
+        <div class="pg-head">
+          <h3>
+            <svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M6 11S.6 7.6.6 4.1A2.9 2.9 0 016 2.2a2.9 2.9 0 015.4 1.9C11.4 7.6 6 11 6 11z"/></svg>
+            恋爱专区牌阵
+          </h3>
+          <span class="pg-en">Love</span>
+        </div>
+        <div class="prow">
+          <div class="p-name">恋爱圣三角</div>
+          <div class="p-desc">有对象或心选人适用，看双方各自的位置与此关系的走向。</div>
+          <div class="p-amt"><span class="cur">¥</span>36<span class="unit">/ 次</span></div>
+        </div>
+        <div class="prow">
+          <div class="p-name">爱情十字</div>
+          <div class="p-desc">现有恋情发生问题时的结构分析，看清症结落在哪一格。</div>
+          <div class="p-amt"><span class="cur">¥</span>45<span class="unit">/ 次</span></div>
+        </div>
+        <div class="prow">
+          <div class="p-name">爱情之树</div>
+          <div class="p-desc">近期桃花运，以及恋爱中正在遇到的问题与可调整之处。</div>
+          <div class="p-amt"><span class="cur">¥</span>40<span class="unit">/ 次</span></div>
+        </div>
+        <div class="prow">
+          <div class="p-name">未来恋人</div>
+          <div class="p-desc">看接下来的恋人是否出现，以及对方的类型与相遇场景。</div>
+          <div class="p-amt"><span class="cur">¥</span>40<span class="unit">/ 次</span></div>
+        </div>
+        <div class="prow">
+          <div class="p-name">涩向 · 单人<span class="p-note">娱乐向</span></div>
+          <div class="p-desc">单人生理与欲望倾向的趣味解读，仅供娱乐，不涉及越界内容。</div>
+          <div class="p-amt"><span class="cur">¥</span>25<span class="unit">/ 次</span></div>
+        </div>
+        <div class="prow">
+          <div class="p-name">涩向 · 双人<span class="p-note">娱乐向</span></div>
+          <div class="p-desc">双人互动契合度的趣味解读，仅供娱乐，不涉及越界内容。</div>
+          <div class="p-amt"><span class="cur">¥</span>40<span class="unit">/ 次</span></div>
+        </div>
+      </div>
+
+      <div class="pgroup" data-reveal>
+        <div class="pg-head">
+          <h3>
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M6 11V5M6 5L1.5 1M6 5l4.5-4"/></svg>
+            选择 &amp; 工作
+          </h3>
+          <span class="pg-en">Choice &amp; Career</span>
+        </div>
+        <div class="prow">
+          <div class="p-name">选择牌阵</div>
+          <div class="p-desc">二选一 / 多选一的取舍分析，简单的会适当降价。</div>
+          <div class="p-amt"><span class="cur">¥</span>40<span class="unit">/ 次</span></div>
+        </div>
+        <div class="prow">
+          <div class="p-name">工作牌阵</div>
+          <div class="p-desc">职场关系、合作、跳槽与事业节奏的专项解读。</div>
+          <div class="p-amt"><span class="cur">¥</span>45<span class="unit">/ 次</span></div>
+        </div>
+      </div>
+
+      <div class="pgroup" data-reveal>
+        <div class="pg-head">
+          <h3>
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M6 .8c1.5 2 1.6 3.2.4 4.1 1.6.4 2.4 1.5 2.4 3.1 0 1.5-1.3 2.4-2.8 2.4S3.2 9.5 3.2 8c0-1.6.8-2.7 2.4-3.1C4.4 4 4.5 2.8 6 .8z"/><rect x="3.6" y="9.4" width="4.8" height="2.2"/></svg>
+            灵气疗愈 &amp; 仪式代做
+          </h3>
+          <span class="pg-en">Reiki &amp; Ritual</span>
+        </div>
+        <div class="prow">
+          <div class="p-name">吉祥天女 / 解厄度母</div>
+          <div class="p-desc">30 分钟远程疗愈 · 包周 ¥100（5 天）· 加时 ¥10 / 10min · 每日限接 5 位。</div>
+          <div class="p-amt"><span class="cur">¥</span>20<span class="unit">/ 次</span></div>
+        </div>
+        <div class="prow">
+          <div class="p-name">古埃及灵气</div>
+          <div class="p-desc">30 分钟远程疗愈 · 包周 ¥140（5 天）· 加时 ¥20 / 10min。</div>
+          <div class="p-amt"><span class="cur">¥</span>30<span class="unit">/ 次</span></div>
+        </div>
+        <div class="prow">
+          <div class="p-name">仪式代做</div>
+          <div class="p-desc">依意图定制材料与流程，提前 3 天沟通排期，完成后回传记录。</div>
+          <!-- 替换为实际价格 -->
+          <div class="p-amt">面议</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pfoot" data-reveal>
+      <p>所有解读均需提前预约，确认排期后再付款。</p>
+      <p>涩向牌阵仅作娱乐向解读，不涉及越界内容，仅面向成年人。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 客返 ===================== -->
+<section class="sec" id="reviews" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div class="sec-head-row">
+        <div>
+          <h2>客返专区</h2>
+          <p class="sub">Words left at the crossroads — 均已获本人同意，昵称做过脱敏</p>
+        </div>
+        <div class="sec-folio">
+          <span class="folio-no">05</span>
+          <span class="folio-line"></span>
+          <span class="folio-tag">Testimonials</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews" id="reviews-list"><!-- 由脚本渲染 --></div>
+  </div>
+</section>
+
+<!-- ===================== 留言 ===================== -->
+<section class="sec" id="guestbook" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div class="sec-head-row">
+        <div>
+          <h2>留言区</h2>
+          <p class="sub">Leave a word, I will read it</p>
+        </div>
+        <div class="sec-folio">
+          <span class="folio-no">06</span>
+          <span class="folio-line"></span>
+          <span class="folio-tag">Guestbook</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="guest-grid">
+      <div data-reveal>
+        <form id="guestForm" novalidate>
+          <div class="field">
+            <input id="gName" name="name" type="text" maxlength="20" placeholder="&#160;" required autocomplete="nickname">
+            <label for="gName">你的昵称 · Required</label>
+          </div>
+
+          <div class="field-select">
+            <span class="flabel" aria-hidden="true">想咨询的业务</span>
+            <select id="gService" name="service" aria-label="想咨询的业务">
+              <option value="塔罗占卜">塔罗占卜</option>
+              <option value="恋爱牌阵">恋爱专区牌阵</option>
+              <option value="占星骰子">占星骰子</option>
+              <option value="选择与工作">选择 / 工作牌阵</option>
+              <option value="灵气疗愈">灵气疗愈</option>
+              <option value="仪式代做">仪式代做</option>
+              <option value="只是想聊聊">只是想说说话</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <textarea id="gText" name="text" maxlength="300" placeholder="&#160;" required></textarea>
+            <label for="gText">留言内容 · 300 字以内</label>
+          </div>
+
+          <label class="check" for="gPublic">
+            <input id="gPublic" type="checkbox" checked>
+            <span>公开这条留言（不勾选则只有我看得到）</span>
+          </label>
+
+          <button type="submit" class="btn">留下这句话 <span class="arr">→</span></button>
+
+          <p class="form-hint">
+            当前为本地演示：留言保存在你自己的浏览器里，刷新不会丢。正式上线时接到后端即可。
+          </p>
+        </form>
+      </div>
+
+      <div data-reveal>
+        <div class="list-title">
+          <span class="label">Messages</span>
+          <span class="label" id="msgCount">03</span>
+        </div>
+        <div class="guest-list" id="guestList" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 预约 ===================== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div data-reveal>
+        <h2>预约一次解读，<br>把问题<em>留在门口</em></h2>
+        <p>
+          如果你已经走到这里，也许你心里那个问题，已经等你很久了。
+          加上微信，把问题简单地告诉我，我们一起看看牌怎么说。
+        </p>
+        <button type="button" class="btn" id="copyWechat" data-wechat="moonkey_heka">
+          复制微信号 · 预约解读 <span class="arr">→</span>
+        </button>
+      </div>
+
+      <dl class="contact-meta" data-reveal>
+        <div><dt>WeChat</dt><dd>moonkey_heka</dd></div>
+        <div><dt>Email</dt><dd>hello@example.com</dd></div>
+        <div><dt>Hours</dt><dd>每日 20:00 – 24:00</dd></div>
+        <div><dt>Response</dt><dd>按顺序回复，不支持催问</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== 页脚 ===================== -->
+<footer class="footer">
+  <div class="footer-in">
+    <div class="footer-top">
+      <div>
+        <div class="f-brand">
+          <svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true">
+            <path d="M7.6 1A5 5 0 0 0 7.6 11A9.4 9.4 0 0 1 7.6 1Z"/>
+          </svg>
+          <b>潮汐心事</b>
+          <span class="f-brand-en">HeartTides</span>
+        </div>
+        <p class="f-desc">
+          赫卡忒的追随者。在十字路口点一盏灯，陪你把心事看完，再自己走出去。
+        </p>
+      </div>
+
+      <div>
+        <p class="f-label">Sections</p>
+        <ul class="f-links">
+          <li><a class="u" href="#about">关于我</a></li>
+          <li><a class="u" href="#services">个人业务</a></li>
+          <li><a class="u" href="#pricing">价格表</a></li>
+          <li><a class="u" href="#reviews">客返专区</a></li>
+          <li><a class="u" href="#guestbook">留言区</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="f-label">Contact</p>
+        <ul class="f-links">
+          <li>微信 · moonkey_heka</li>
+          <li>邮箱 · hello@example.com</li>
+          <li>服务时间 · 20:00 – 24:00</li>
+          <li>预约方式 · 私信说明问题</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="disclaimer">
+      <b>免责声明：</b>本站提供的塔罗占卜、占星骰子、灵气疗愈与仪式服务，属于个人信念与心灵陪伴范畴，
+      不构成医疗、心理、法律或投资建议，亦不能替代任何专业诊疗与咨询。
+      所有解读仅供参考，最终选择权与责任始终在你手中。服务对象需年满 18 周岁。
+    </p>
+
+    <div class="copyright">
+      <span>© 2025 潮汐心事 · HeartTides</span>
+      <span>Hekate, lead the way</span>
+    </div>
+  </div>
+</footer>
+
+<!-- 客返弹窗 -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lbName" aria-hidden="true">
+  <div class="lb-card">
+    <button class="lb-close" id="lbClose" aria-label="关闭">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+    <p class="lb-quote" id="lbText"></p>
+    <div class="lb-meta">
+      <span class="who" id="lbName"></span>
+      <span id="lbSvc"></span>
+      <span id="lbDate"></span>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ==========================================================
+     1. 导航状态 + 当前区块高亮
+     ========================================================== */
+  var nav = document.getElementById('nav');
+  var navAnchors = document.querySelectorAll('.nav-links a');
+  var sections = ['about','services','reiki','pricing','reviews','guestbook'].map(function(id){
+    return document.getElementById(id);
+  }).filter(Boolean);
+
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      ticking = false;
+      var y = window.scrollY || document.documentElement.scrollTop;
+      nav.classList.toggle('scrolled', y > 16);
+
+      var current = '';
+      sections.forEach(function(sec){
+        if (sec.getBoundingClientRect().top <= 160) current = sec.id;
+      });
+      navAnchors.forEach(function(a){
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ==========================================================
+     2. 移动端菜单
+     ========================================================== */
+  var burger = document.getElementById('burger');
+  var drawer = document.getElementById('drawer');
+
+  function closeMenu(){
+    document.body.classList.remove('menu-open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', '打开菜单');
+    drawer.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  function openMenu(){
+    document.body.classList.add('menu-open');
+    burger.setAttribute('aria-expanded', 'true');
+    burger.setAttribute('aria-label', '关闭菜单');
+    drawer.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  burger.addEventListener('click', function(){
+    document.body.classList.contains('menu-open') ? closeMenu() : openMenu();
+  });
+  drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+  window.addEventListener('resize', function(){
+    if (window.innerWidth >= 900) closeMenu();
+  });
+
+  /* ==========================================================
+     3. 滚动渐显
+     ========================================================== */
+  var revealEls = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window && !RM){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var sibs = Array.prototype.slice.call(el.parentNode.children).filter(function(c){
+          return c.hasAttribute && c.hasAttribute('data-reveal');
+        });
+        el.style.transitionDelay = Math.min(Math.max(sibs.indexOf(el), 0) * 90, 360) + 'ms';
+        el.classList.add('in');
+        io.unobserve(el);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ==========================================================
+     4. 客返
+     ========================================================== */
+  var REVIEWS = [
+    {
+      name: '小鹿', service: '塔罗占卜 · 单问 ¥33', date: '2025.11.02',
+      text: '我问的是要不要辞职。她没有替我做决定，只是把牌里我一直在回避的那件事说了出来——我不是怕辞不掉，我是怕走完之后没有人认可我。挂掉语音我在楼下坐了很久，但第二天就把辞职信写好了。谢谢你没有哄我。'
+    },
+    {
+      name: '匿', service: '恋爱圣三角 ¥36', date: '2025.10.27',
+      text: '圣三角把我和他的位置摆得特别清楚。之前我一直在猜他到底想不想认真，看完那三张牌我才明白，问题不在他想不想，在我一直不肯问。听完就不再反复猜了，很谢谢。'
+    },
+    {
+      name: '阿遥', service: '远程灵气疗愈', date: '2025.10.19',
+      text: '本来对远程是有点怀疑的，就抱着试试看的心态。过程中手心一直发热，结束后当晚睡了整八个小时——很久没有过的那种睡法。第二天起来肩膀是松的。'
+    },
+    {
+      name: '柒月', service: '占星骰子 ¥18', date: '2025.10.11',
+      text: '十八块问了一个我一直不敢问的问题，答案干脆得让我笑了。骰子是真的不绕弯子。后来照着她说的那个方向挪了一小步，事情居然真的动起来了。'
+    },
+    {
+      name: 'Nora', service: '未来恋人 ¥40', date: '2025.09.28',
+      text: '当时她描述的类型——偏年长、做技术、话少但细心、在某种「重复性」的场合认识。三个月后遇到的人几乎完全重合，场景也对上了。有一点毛，但更多是安心。'
+    },
+    {
+      name: '匿', service: '四季牌阵 ¥100', date: '2025.09.15',
+      text: '四季牌阵更像一次年度复盘，不是那种「你明年会发财」的许诺，而是把四个季节的能量一条一条摊开。我做了一整页笔记，到现在还在翻。这个价格买到的是四十分钟的专注，很值。'
+    }
+  ];
+
+  var listEl = document.getElementById('reviews-list');
+  var moonSVG = '<svg class="rv-moon" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M7.6 1A5 5 0 0 0 7.6 11A9.4 9.4 0 0 1 7.6 1Z"/></svg>';
+
+  var frag = document.createDocumentFragment();
+  REVIEWS.forEach(function(r, i){
+    var el = document.createElement('article');
+    el.className = 'review';
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', '查看 ' + r.name + ' 的完整评价');
+    el.dataset.index = i;
+    el.innerHTML =
+      '<div class="rv-top">' + moonSVG +
+        '<span class="rv-name">' + r.name + '</span>' +
+        '<span class="rv-date">' + r.date + '</span>' +
+      '</div>' +
+      '<blockquote>“' + r.text + '”</blockquote>' +
+      '<div class="rv-foot">' +
+        '<span class="rv-svc">' + r.service + '</span>' +
+        '<span class="rv-more">阅读全文 <span class="arr">→</span></span>' +
+      '</div>';
+    frag.appendChild(el);
+  });
+  listEl.appendChild(frag);
+
+  var lightbox = document.getElementById('lightbox');
+  var lbText = document.getElementById('lbText');
+  var lbName = document.getElementById('lbName');
+  var lbSvc = document.getElementById('lbSvc');
+  var lbDate = document.getElementById('lbDate');
+  var lastFocused = null;
+
+  function openLightbox(i){
+    var r = REVIEWS[i];
+    if (!r) return;
+    lastFocused = document.activeElement;
+    lbText.textContent = '“' + r.text + '”';
+    lbName.textContent = r.name;
+    lbSvc.textContent = r.service;
+    lbDate.textContent = r.date;
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('lbClose').focus();
+  }
+  function closeLightbox(){
+    if (!lightbox.classList.contains('open')) return;
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  listEl.addEventListener('click', function(e){
+    var card = e.target.closest('.review');
+    if (card) openLightbox(Number(card.dataset.index));
+  });
+  listEl.addEventListener('keydown', function(e){
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var card = e.target.closest('.review');
+    if (card){ e.preventDefault(); openLightbox(Number(card.dataset.index)); }
+  });
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e){
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){ closeLightbox(); closeMenu(); }
+  });
+
+  /* ==========================================================
+     5. 留言（localStorage）
+     ========================================================== */
+  var GB_KEY = 'hecate_guestbook_v1';
+  var SEED = [
+    {
+      name: '夜航船', service: '塔罗占卜', date: '2025.11.08',
+      text: '第一次找塔罗，紧张到手心出汗。全程被照顾得很好，没有那种压迫感，也没有被吓。原来占卜也可以是这么温柔的一件事。',
+      reply: '谢谢你愿意把这段心事交给我。慢慢来，牌已经替你把路标好了。'
+    },
+    {
+      name: '小满', service: '灵气疗愈', date: '2025.11.05',
+      text: '想问一下灵气疗愈需要提前准备什么吗？需要空腹或者安静的环境吗？',
+      reply: '不需要空腹，找一个不会被打扰的十五分钟就好。可以躺着，手机静音，结束后喝一杯温水。'
+    },
+    {
+      name: '黑猫先生', service: '仪式代做', date: '2025.10.30',
+      text: '仪式代做可以指定日期吗？想赶在满月那天。',
+      reply: '可以的。月相日期是排期里最优先的，不过请至少提前三天告诉我，材料需要时间准备。'
+    }
+  ];
+
+  var guestList = document.getElementById('guestList');
+  var msgCount = document.getElementById('msgCount');
+  var form = document.getElementById('guestForm');
+  var toastEl = document.getElementById('toast');
+  var toastTimer = null;
+
+  function loadMsgs(){
+    try {
+      var raw = localStorage.getItem(GB_KEY);
+      var arr = raw ? JSON.parse(raw) : [];
+      return Array.isArray(arr) ? arr : [];
+    } catch (e){ return []; }
+  }
+  function saveMsgs(arr){
+    try { localStorage.setItem(GB_KEY, JSON.stringify(arr)); } catch (e){}
+  }
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2600);
+  }
+  function today(){
+    var d = new Date();
+    var p = function(n){ return n < 10 ? '0' + n : '' + n; };
+    return d.getFullYear() + '.' + p(d.getMonth() + 1) + '.' + p(d.getDate());
+  }
+
+  function buildMsg(m){
+    var wrap = document.createElement('div');
+    wrap.className = 'msg' + (m.isPrivate ? ' private' : '');
+
+    var head = document.createElement('div');
+    head.className = 'msg-head';
+
+    var nm = document.createElement('span');
+    nm.className = 'msg-name';
+    nm.textContent = m.name;
+    head.appendChild(nm);
+
+    var svc = document.createElement('span');
+    svc.className = 'msg-svc';
+    svc.textContent = m.service;
+    head.appendChild(svc);
+
+    var dt = document.createElement('span');
+    dt.className = 'msg-date';
+    dt.textContent = m.date;
+    head.appendChild(dt);
+
+    wrap.appendChild(head);
+
+    var body = document.createElement('p');
+    body.textContent = m.isPrivate ? '（这是一条私密留言，只有站长能看到。）' : m.text;
+    wrap.appendChild(body);
+
+    if (m.reply){
+      var rep = document.createElement('div');
+      rep.className = 'msg-reply';
+      var who = document.createElement('b');
+      who.textContent = '小汐回复';
+      rep.appendChild(who);
+      rep.appendChild(document.createTextNode(m.reply));
+      wrap.appendChild(rep);
+    }
+    return wrap;
+  }
+
+  function renderMsgs(){
+    guestList.textContent = '';
+    var all = loadMsgs().concat(SEED);
+    var f = document.createDocumentFragment();
+    all.forEach(function(m){ f.appendChild(buildMsg(m)); });
+    guestList.appendChild(f);
+    msgCount.textContent = (all.length < 10 ? '0' : '') + all.length;
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    var nameInput = document.getElementById('gName');
+    var textInput = document.getElementById('gText');
+    var name = nameInput.value.trim();
+    var text = textInput.value.trim();
+
+    if (!name){ toast('请先留一个昵称'); nameInput.focus(); return; }
+    if (!text){ toast('留言内容还没有写'); textInput.focus(); return; }
+
+    var isPrivate = !document.getElementById('gPublic').checked;
+    var arr = loadMsgs();
+    arr.unshift({
+      name: name.slice(0, 20),
+      service: document.getElementById('gService').value,
+      text: text.slice(0, 300),
+      isPrivate: isPrivate,
+      date: today()
+    });
+    saveMsgs(arr);
+    renderMsgs();
+
+    form.reset();
+    document.getElementById('gPublic').checked = true;
+
+    toast(isPrivate ? '已收到你的私密留言，我会看到' : '留言已留下，谢谢你');
+    guestList.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'nearest' });
+  });
+
+  renderMsgs();
+
+  /* ==========================================================
+     6. 复制微信号
+     ========================================================== */
+  var copyBtn = document.getElementById('copyWechat');
+  if (copyBtn){
+    var WECHAT = copyBtn.getAttribute('data-wechat') || 'moonkey_heka';
+
+    var fallbackCopy = function(){
+      var ta = document.createElement('textarea');
+      ta.value = WECHAT;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (err){ ok = false; }
+      document.body.removeChild(ta);
+      toast(ok ? '微信号已复制：' + WECHAT : '微信号：' + WECHAT + '（请手动复制）');
+    };
+
+    copyBtn.addEventListener('click', function(){
+      if (navigator.clipboard && window.isSecureContext){
+        navigator.clipboard.writeText(WECHAT).then(function(){
+          toast('微信号已复制：' + WECHAT);
+        }, fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>
